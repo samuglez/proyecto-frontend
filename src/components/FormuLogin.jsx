@@ -45,20 +45,21 @@ const FormuLogin = () => {
     useEffect(() => { }, []);
 
     return (
-        <div>
-            <h1>Login</h1>
-            {error ? <h3>Debe completar todos los campos</h3> : null}
+        <div className='d-flex flex-wrap justify-content-around mt-3'>
+
             <form>
+                <h1>Login</h1>
+                {error ? <h3>Debe completar todos los campos</h3> : null}
 
                 <div className="form-group row">
                     <label htmlFor="Email" className='col-sm-4 col-form-label'>Email: </label><br />
-                    <div class="col-sm-10">
+                    <div className="col-sm-10">
                         <input type="email" className="form-control" placeholder="Email" id="email" value={Email} onChange={gestorEmail} /><br />
                     </div>
                 </div>
                 <div className="form-group row">
                     <label htmlFor="Password" className='col-sm-4 col-form-label'>Contraseña: </label>
-                    <div class="col-sm-10">
+                    <div className="col-sm-10">
                         <input type="password" className="form-control" placeholder="Contraseña" id="password" value={Password} onChange={gestorPassword} /><br />
                     </div>
                 </div>
