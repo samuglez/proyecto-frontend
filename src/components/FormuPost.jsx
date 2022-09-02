@@ -34,16 +34,31 @@ const FormuPost = () => {
     //         console.log(error.toJSON());
     //     }
     // }
+    //! Copiar esto para la creacion de curso
+    // , {
+    //     headers: {
+    //         Authorization: 'Bearer ' + e.token, // En los headers van 'Bearer ' + token recibido
+    //             }
+    //         }).then((response) => {
+    //             console.log('Todo correcto', response.data);
+    //         })
 
     const postUsuario = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(URL, {
+            await axios.post(URL, {
                 nombre: nombre,
                 email: email,
                 password: password
+            }).then((response) => {
+                console.log('Login correcto');
+                console.log(response.data.token);
+                console.log(response.data.userId);
+                localStorage.setItem('DatosUsuario', JSON.stringify({
+                    userId: response.data.userId,
+                    token: response.data.token
+                }))
             })
-            console.log(response.data);
         } catch (error) {
             console.log(error.message);
         }

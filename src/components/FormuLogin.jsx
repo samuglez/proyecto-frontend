@@ -13,14 +13,20 @@ const FormuLogin = () => {
     const [error, setError] = useState(false);
 
     const postUsuario = async (e) => {
+        e.preventDefault()
         try {
-            console.log(Email);
-            console.log(Password);
-            const response = await axios.post(URL, {
+            await axios.post(URL, {
                 email: Email,
                 password: Password
+            }).then((response) => {
+                console.log('Login correcto');
+                console.log(response.data.token);
+                localStorage.setItem('DatosUsuario', JSON.stringify({
+                    userId: response.data.userId,
+                    token: response.data.token
+                }))
             })
-            console.log(response.data);
+
         } catch (error) {
             console.log(error.message);
         }
@@ -33,6 +39,7 @@ const FormuLogin = () => {
         setEmail('');
         setPassword('');
     }
+
 
     const gestorEmail = (e) => {
 
@@ -48,7 +55,7 @@ const FormuLogin = () => {
         <div className='d-flex flex-wrap justify-content-around mt-3'>
 
             <form>
-                <h1>Login</h1>
+                <h1>Conectarse</h1>
                 {error ? <h3>Debe completar todos los campos</h3> : null}
 
                 <div className="form-group row">
