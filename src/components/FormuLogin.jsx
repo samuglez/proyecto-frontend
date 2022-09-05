@@ -4,38 +4,42 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 
 
-const FormuLogin = () => {
-
+const FormuLogin = (props) => {
     const URL = "http://localhost:5000/api/usuarios/login"
+    const { gestionarLogin } = props;
 
+
+    const [tieneAcceso, setTieneAcceso] = useState(false);
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
     const [error, setError] = useState(false);
 
+
     const postUsuario = async (e) => {
         e.preventDefault()
-        try {
-            await axios.post(URL, {
-                email: Email,
-                password: Password
-            }).then((response) => {
-                console.log('Login correcto');
-                console.log(response.data.token);
-                localStorage.setItem('DatosUsuario', JSON.stringify({
-                    userId: response.data.userId,
-                    token: response.data.token
-                }))
-            })
-
-        } catch (error) {
-            console.log(error.message);
+        if (!tieneAcceso) {
+            try {
+                await axios.post(URL, {
+                    email: Email,
+                    password: Password
+                }).then((response) => {
+                    console.log('Login correcto');
+                    gestionarLogin(response.data)
+                    console.log(response.data.token);
+                    localStorage.setItem('DatosUsuario', JSON.stringify({
+                        userId: response.data.userId,
+                        token: response.data.token
+                    }))
+                })
+            } catch (error) {
+                console.log(error.message);
+            }
         }
         setError(false);
         if (Email.trim() === '' || Password.trim() === '') {
             setError(true);
             return;
         }
-
         setEmail('');
         setPassword('');
     }
@@ -52,26 +56,26 @@ const FormuLogin = () => {
     useEffect(() => { }, []);
 
     return (
-        <div className='d-flex flex-wrap justify-content-around mt-3'>
+        <div>
 
             <form>
                 <h1>Conectarse</h1>
                 {error ? <h3>Debe completar todos los campos</h3> : null}
 
-                <div className="form-group row">
-                    <label htmlFor="Email" className='col-sm-4 col-form-label'>Email: </label><br />
-                    <div className="col-sm-10">
-                        <input type="email" className="form-control" placeholder="Email" id="email" value={Email} onChange={gestorEmail} /><br />
+                <div>
+                    <label htmlFor="Email">Email: </label><br />
+                    <div>
+                        <input type="email" placeholder="Email" id="email" value={Email} onChange={gestorEmail} /><br />
                     </div>
                 </div>
-                <div className="form-group row">
-                    <label htmlFor="Password" className='col-sm-4 col-form-label'>Contraseña: </label>
-                    <div className="col-sm-10">
-                        <input type="password" className="form-control" placeholder="Contraseña" id="password" value={Password} onChange={gestorPassword} /><br />
+                <div>
+                    <label htmlFor="Password">Contraseña: </label>
+                    <div>
+                        <input type="password" placeholder="Contraseña" id="password" value={Password} onChange={gestorPassword} /><br />
                     </div>
                 </div>
-                <div className="form-group row">
-                    <input type="button" className="btn btn-primary" id="submit" value="Login" onClick={postUsuario} />
+                <div>
+                    <input type="button" id="submit" value="Login" onClick={postUsuario} />
                 </div>
 
             </form>

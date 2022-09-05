@@ -96,7 +96,7 @@ const FormuPost = () => {
                 <div className="form-group row">
                     <label htmlFor="nombre" className='col-sm-4 col-form-label'>Nombre: </label><br />
                     <div className="col-sm-10">
-                        <input type="nombre" className="form-control" placeholder="Nombre" id="nombre" value={nombre} onChange={gestorNombre} /><br />
+                        <input type="text" className="form-control" placeholder="Nombre" id="nombre" value={nombre} onChange={gestorNombre} /><br />
                     </div>
                 </div>
                 <div className="form-group row">

@@ -68,43 +68,43 @@ const FormuCursos = () => {
 
     useEffect(() => { extraerDatosDeUsuario() }, []);
     return (
-        <div className='d-flex flex-wrap justify-content-around mt-3'>
+        <div>
 
             <form>
                 <h1>Crear Curso</h1>
                 {error ? <h3>Debe completar todos los campos</h3> : null}
-                <div className="form-group row">
-                    <label htmlFor="curso" className='col-sm-4 col-form-label'>Curso: </label><br />
-                    <div className="col-sm-10">
-                        <input type="text" className="form-control" placeholder="Curso" id="curso" value={curso} onChange={gestorCurso} /><br />
+                <div>
+                    <label htmlFor="curso">Curso: </label><br />
+                    <div>
+                        <input type="text" placeholder="Curso" id="curso" value={curso} onChange={gestorCurso} /><br />
                     </div>
                 </div>
-                <div className="form-group row">
-                    <label htmlFor="docente" className='col-sm-4 col-form-label'>Docente: </label><br />
-                    <div className="col-sm-10">
-                        <input type="text" className="form-control" placeholder="Docente" id="docente" value={docente} onChange={gestorDocente} /><br />
+                <div>
+                    <label htmlFor="docente">Docente: </label><br />
+                    <div>
+                        <input type="text" placeholder="Docente" id="docente" value={docente} onChange={gestorDocente} /><br />
                     </div>
                 </div>
-                <div className="form-group row">
-                    <label htmlFor="opcion" className='col-sm-4 col-form-label'>Opcion: </label>
+                <div>
+                    <label htmlFor="opcion">Opcion: </label>
                     <div className="col-sm-10">
-                        <input type="text" className="form-control" placeholder="Opcion" id="opcion" value={opcion} onChange={gestorOpcion} /><br />
+                        <input type="text" placeholder="Opcion" id="opcion" value={opcion} onChange={gestorOpcion} /><br />
                     </div>
                 </div>
-                <div className="form-group row">
-                    <label htmlFor="aula" className='col-sm-4 col-form-label'>Aula: </label>
+                <div>
+                    <label htmlFor="aula">Aula: </label>
                     <div className="col-sm-10">
-                        <input type="text" className="form-control" placeholder="Aula" id="aula" value={aula} onChange={gestorAula} /><br />
+                        <input type="text" placeholder="Aula" id="aula" value={aula} onChange={gestorAula} /><br />
                     </div>
                 </div>
-                <div className="form-group row">
-                    <label htmlFor="precio" className='col-sm-4 col-form-label'>Precio: </label>
+                <div>
+                    <label htmlFor="precio">Precio: </label>
                     <div className="col-sm-10">
-                        <input type="text" className="form-control" placeholder="Precio" id="precio" value={precio} onChange={gestorPrecio} /><br />
+                        <input type="text" placeholder="Precio" id="precio" value={precio} onChange={gestorPrecio} /><br />
                     </div>
                 </div>
-                <div className="form-group row">
-                    <input type="button" className="btn btn-primary" id="submit" value="Registrarse" onClick={postCurso} />
+                <div>
+                    <input type="button" id="submit" value="Registrarse" onClick={postCurso} />
                 </div>
 
             </form>
