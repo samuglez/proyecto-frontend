@@ -8,6 +8,7 @@ import FormuLogin from './components/FormuLogin'
 import FormuPost from './components/FormuPost'
 import Error from './components/Error'
 import MostrarUsuarios from './components/MostrarUsuarios'
+import MostrarCursos from './components/MostrarCursos'
 import Inicio from './components/Inicio'
 import LogOut from './components/LogOut'
 import './Style.css';
@@ -31,13 +32,14 @@ const App = () => {
             <Router>
                 <div className='navbar'>
                     {tieneAcceso === false ? (<div>
-                        <NavLink to='/'>Inicio</NavLink>
-                        <NavLink to='/login'>Iniciar Sesion</NavLink>
-                        <NavLink to='/registro'>Registrarse</NavLink>
+                        <NavLink className={'navlink'} to='/'>Inicio</NavLink>
+                        <NavLink className={'navlink'} to='/login'>Iniciar Sesion</NavLink>
+                        <NavLink className={'navlink'} to='/registro'>Registrarse</NavLink>
                     </div>) : (<div>
-                        <NavLink to='/usuarios'>Docentes</NavLink>
-                        <NavLink to='/cursos'>Crear Cursos</NavLink>
-                        <NavLink to='/logout'>Cerrar Sesion</NavLink>
+                        <NavLink className={'navlink'} to='/usuarios'>Docentes</NavLink>
+                        <NavLink className={'navlink'} to='/cursos'>Cursos</NavLink>
+                        <NavLink className={'navlink'} to='/cursos/crear'>Crear Cursos</NavLink>
+                        <NavLink className={'navlink'} to='/logout'>Cerrar Sesion</NavLink>
                     </div>)}
                 </div>
                 <Routes>
@@ -45,8 +47,9 @@ const App = () => {
                     <Route path='/login' element={<FormuLogin gestionarLogin={gestionarLogin} />} />
                     <Route path='/logout' element={<LogOut gestionarLogOut={gestionarLogOut} />} />
                     <Route path='/usuarios' element={<MostrarUsuarios />} />
+                    <Route path='/cursos' element={<MostrarCursos />} />
                     <Route path='/registro' element={<FormuPost />} />
-                    <Route path='/cursos' element={<FormuCursos />} />
+                    <Route path='/cursos/crear' element={<FormuCursos />} />
                     <Route path='/404' element={<Error />} />
                     <Route path='*' element={<Navigate to='/404' replace />} />
                 </Routes>

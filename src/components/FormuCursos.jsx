@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 
 const FormuCursos = () => {
-    const URL = "http://localhost:5000/api/cursos"
+    const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/cursos"
     const [curso, setCurso] = useState('')
     const [docente, setDocente] = useState('');
     const [opcion, setOpcion] = useState('');

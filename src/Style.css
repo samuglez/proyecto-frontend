@@ -4,17 +4,34 @@
 
 .navbar {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10vh;
   background-color: #ccc;
+  padding: 7px;
+  font-size: 1.1rem;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 3px 3px 10px;
+  height: 50px;
+  margin-bottom: 3rem;
   border: solid 2px black;
+}
+
+.navlink {
+  margin: 20px;
+  text-decoration: none;
+  font-size: medium;
+  font-weight: bold;
+  color: black;
+}
+.navlink:hover {
+  font-size: large;
+  color: rgba(0, 0, 0, 0.432);
 }
 
 form {
   width: 300px;
   padding: 16px;
   border-radius: 10px;
+  box-shadow: 3px 3px 10px;
   margin: auto;
   background-color: #ccc;
   border: solid 2px black;
@@ -51,4 +68,23 @@ form input[type="button"] {
 
 form input[type="button"]:hover {
   cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  width: 30rem;
+  margin: 1rem;
+  padding: 1rem;
+  box-shadow: 3px 3px 10px;
+  border: solid 2px black;
+  background-color: #ccc;
+  color: black;
+  font-size: 1.1rem;
 }

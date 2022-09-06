@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Usuarios from './Usuarios'
 
 const MostrarUsuarios = () => {
-    const URL = "http://localhost:5000/api/usuarios"
+    const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/usuarios"
     const [mostrarUser, setMostrarUser] = useState([]);
     const mostrar = async () => {
         try {
@@ -17,10 +17,10 @@ const MostrarUsuarios = () => {
     useEffect(() => { mostrar() }, []);
     console.log(mostrarUser);
     return (
-        <div>
-            <h1>{mostrarUser.map((muestra) => {
+        <div className='container'>
+            {mostrarUser.map((muestra) => {
                 return (<Usuarios key={muestra.id} muestra={muestra} />)
-            })}</h1>
+            })}
         </div>
     )
 }

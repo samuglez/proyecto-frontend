@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Usuarios = ({ muestra }) => {
+const Cursos = ({ muestra }) => {
     const muestras = muestra.cursos.map((dato) => { return dato.curso })
 
     return (
@@ -15,4 +15,4 @@ const Usuarios = ({ muestra }) => {
     )
 }
 
-export default Usuarios
+export default Cursos

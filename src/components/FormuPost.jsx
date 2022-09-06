@@ -5,7 +5,7 @@ import { useState } from 'react'
 // import Usuarios from './Usuarios'
 
 const FormuPost = () => {
-    const URL = "http://localhost:5000/api/usuarios"
+    const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/usuarios"
     // const [mostrarUser, setMostrarUser] = useState('');
     const [nombre, setNombre] = useState('')
     const [email, setEmail] = useState('');
