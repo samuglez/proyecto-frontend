@@ -74,43 +74,55 @@ const ModificarCurso = ({ cursos }) => {
 
     return (
         <div>
-            <h2>Curso</h2>
-            <input
-                type="text"
-                placeholder={cursos.curso}
-                value={curso}
-                onChange={gestorCurso}
-            />
-            Opcion :{" "}
-            <input
-                type="text"
-                placeholder={cursos.opcion}
-                value={opcion}
-                onChange={gestorOpcion}
-            />
-            Aula :{" "}
-            <input
-                type="text"
-                placeholder={cursos.aula}
-                value={aula}
-                onChange={gestorAula}
-            />
-            Precio :
-            <input
-                type="number"
-                placeholder={"Precio: " + cursos.precio + " €"}
-                value={precio}
-                onChange={gestorPrecio}
-            />
-            <button type="Button" onClick={modificar}>
-                Modificar
-            </button>
-            <button
+            <form>
+                <h2>Curso</h2>
+                {/* <label htmlFor="curso">Curso: </label><br /> */}
+                <input
+                    type="text"
+                    placeholder={cursos.curso}
+                    value={curso}
+                    onChange={gestorCurso}
+                />
+                <div><label htmlFor="opcion">Opcion: </label></div>
+                <select name="opcion" id="opcion" onChange={gestorOpcion} >
+                    <option value=''>Seleccione una opcion</option>
+                    <option value='Presencial'>Presencial</option>
+                    <option value='Online'>Online</option>
+                    <option value='Semi-presencial'>Semi-presencial</option>
+                </select ><br />
+                {/* <input
+                    type="text"
+                    placeholder={cursos.opcion}
+                    value={opcion}
+                    onChange={gestorOpcion}
+                /> */}
+                <label htmlFor="aula">Aula: </label><br />
+                <select name="aula" id="aula" onChange={gestorAula} >
+                    <option value=''>Seleccione una opcion</option>
+                    <option value='Aula-1'>Aula-1</option>
+                    <option value='Aula-2'>Aula-2</option>
+                    <option value='Aula-3'>Aula-3</option>
+                    <option value='Aula-4'>Aula-4</option>
+                    <option value='Aula-5'>Aula-5</option>
+                    <option value='Aula-Virtual'>Aula-Virtual</option>
+                </select ><br />
+                <label htmlFor="precio">Precio: </label><br />
+                <input
+                    type="number"
+                    placeholder={"Precio: " + cursos.precio + " €"}
+                    value={precio}
+                    onChange={gestorPrecio}
+                /> <br />
+                <button type="Button" onClick={modificar}>
+                    Modificar
+                </button>
+                <button
 
-                onClick={borrar}
-            >
-                Eliminar
-            </button>
+                    onClick={borrar}
+                >
+                    Eliminar
+                </button>
+            </form>
         </div>
     );
 };

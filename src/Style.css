@@ -52,6 +52,7 @@ form {
   border-radius: 10px;
   box-shadow: 3px 3px 10px;
   margin: auto;
+  margin-bottom: 2rem;
   background-color: #ccc;
   border: solid 2px black;
 }
@@ -87,6 +88,11 @@ form input[type="button"] {
 
 form input[type="button"]:hover {
   cursor: pointer;
+}
+
+.modificar {
+  display: flex;
+  justify-content: space-around;
 }
 
 .container {

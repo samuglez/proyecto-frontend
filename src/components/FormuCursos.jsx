@@ -147,7 +147,7 @@ const FormuCursos = (props) => {
                 </div>
 
             </form>
-            <div>
+            <div className='modificar'>
                 {cursos.filter((filter) => {
                     return filter.docente._id === extraerDatosDeUsuario()[1];
                 })
