@@ -2,72 +2,48 @@ import React from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
-// import Usuarios from './Usuarios'
+import { useNavigate } from 'react-router-dom'
 
-const FormuPost = () => {
-    const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/usuarios"
-    // const [mostrarUser, setMostrarUser] = useState('');
+const FormuPost = (props) => {
+    const URL = 'http://localhost:5000/api/usuarios'
+    // const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/usuarios"
+    const { gestionarLogin } = props;
+    const navegar = useNavigate();
     const [nombre, setNombre] = useState('')
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(false);
+    const [tieneAcceso, setTieneAcceso] = useState(false);
 
-    // const mostrar = async () => {
-    //     try {
-    //         const respuesta = await axios.get(URL);
-    //         setMostrarUser(respuesta.data);
-    //     } catch (error) {
-    //         console.log(error.toJSON());
-    //     }
-    // };
 
-    // const post = async (nombre, email, password) => {
-    //     try {
-    //         const respuesta = await axios.post(URL, {
-    //             nombre: nombre,
-    //             email: email,
-    //             password: password
-    //         });
-    //         mostrar()
-    //         console.log(respuesta.data);
-    //     } catch (error) {
-    //         console.log(error.toJSON());
-    //     }
-    // }
-    //! Copiar esto para la creacion de curso
-    // , {
-    //     headers: {
-    //         Authorization: 'Bearer ' + e.token, // En los headers van 'Bearer ' + token recibido
-    //             }
-    //         }).then((response) => {
-    //             console.log('Todo correcto', response.data);
-    //         })
 
     const postUsuario = async (e) => {
         e.preventDefault();
-        try {
-            await axios.post(URL, {
-                nombre: nombre,
-                email: email,
-                password: password
-            }).then((response) => {
-                console.log('Login correcto');
-                console.log(response.data.token);
-                console.log(response.data.userId);
-                localStorage.setItem('DatosUsuario', JSON.stringify({
-                    userId: response.data.userId,
-                    token: response.data.token
-                }))
-            })
-        } catch (error) {
-            console.log(error.message);
-        }
+        if (!tieneAcceso)
+            try {
+                await axios.post(URL, {
+                    nombre: nombre,
+                    email: email,
+                    password: password
+                }).then((response) => {
+                    console.log('Login correcto');
+                    gestionarLogin(response.data)
+                    console.log(response.data.token);
+                    console.log(response.data.userId);
+                    localStorage.setItem('DatosUsuario', JSON.stringify({
+                        userId: response.data.userId,
+                        token: response.data.token
+                    }))
+                    navegar('/crearcurso');
+                })
+            } catch (error) {
+                console.log(error.message);
+            }
         setError(false);
         if (nombre.trim() === '' || email.trim() === '' || password.trim() === '') {
             setError(true);
             return;
         }
-        // post(nombre, email, password)
         setNombre('');
         setEmail('');
         setPassword('');

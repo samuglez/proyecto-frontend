@@ -1,15 +1,17 @@
 import React from 'react'
 
 const Cursos = ({ muestra }) => {
-    const muestras = muestra.cursos.map((dato) => { return dato.curso })
+
 
     return (
         <div>
             <div className='card'>
-                <h2>Docente</h2>
-                <h5>{`Nombre: ${muestra.nombre}`}</h5>
-                <h5>{`Email: ${muestra.email}`}</h5>
-                <h5>{`Cursos: ${muestras}`}</h5>
+                <h2>Curso</h2>
+                <h5>Curso: {muestra.curso}</h5>
+                <h5>Aula: {muestra.aula}</h5>
+                <h5>Docente: {muestra.docente.nombre}</h5>
+                <h5>Opcion: {muestra.opcion}</h5>
+                <h5>Precio: {muestra.precio}</h5>
             </div>
         </div>
     )

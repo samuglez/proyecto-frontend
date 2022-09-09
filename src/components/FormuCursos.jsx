@@ -2,51 +2,77 @@ import React from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import ModificarCurso from './ModificarCurso'
 
-const FormuCursos = () => {
-    const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/cursos"
+const FormuCursos = (props) => {
+    const URL = 'http://localhost:5000/api/cursos'
+    // const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/cursos"
+    const { gestionarLogin } = props;
+    const navegar = useNavigate();
     const [curso, setCurso] = useState('')
     const [docente, setDocente] = useState('');
     const [opcion, setOpcion] = useState('');
     const [aula, setAula] = useState('');
     const [precio, setPrecio] = useState('');
     const [error, setError] = useState(false);
+    const [tieneAcceso, setTieneAcceso] = useState(false);
 
     const extraerDatosDeUsuario = () => {
         const datosRecuperar = JSON.parse(localStorage.getItem('DatosUsuario'));
         if (datosRecuperar && datosRecuperar.token) {
             return [datosRecuperar.token, datosRecuperar.userId];
         }
+
     };
-    extraerDatosDeUsuario();
+    console.log(extraerDatosDeUsuario());
+    // extraerDatosDeUsuario();
     const postCurso = async (e) => {
         e.preventDefault();
-        try {
-            await axios.post(URL, {
-                curso: curso,
-                docente: extraerDatosDeUsuario()[1],
-                opcion: opcion,
-                aula: aula,
-                precio: precio,
-            }, { headers: { Authorization: 'Bearer ' + extraerDatosDeUsuario()[0] } }).then((response) => {
-                console.log('Curso añadido correctamente');
-                console.log(response.data);
-            })
-        } catch (error) {
-            console.log(error.message);
+        if (!tieneAcceso) {
+            try {
+                await axios.post(URL, {
+                    curso: curso,
+                    docente: extraerDatosDeUsuario()[1],
+                    opcion: opcion,
+                    aula: aula,
+                    precio: precio,
+                }, { headers: { Authorization: 'Bearer ' + extraerDatosDeUsuario()[0] } }).then((response) => {
+                    console.log('Curso añadido correctamente');
+                    gestionarLogin(response.data)
+                    console.log(response.data);
+                })
+                navegar('/cursos/crear');
+            } catch (error) {
+                console.log(error.message);
+            }
         }
+
         setError(false);
         if (curso.trim() === '' || opcion.trim() === '' || aula.trim() === '' || precio.trim() === '') {
             setError(true);
             return;
         }
-        // post(nombre, email, password)
         setCurso('');
         setDocente('');
         setOpcion('');
         setAula('');
         setPrecio('');
     }
+    const [cursos, setCursos] = useState([]);
+
+    const getCursos = async () => {
+        try {
+            const response = await axios.get(URL, {
+                headers: {
+                    Authorization: "Bearer " + extraerDatosDeUsuario()[0],
+                },
+            });
+            setCursos(response.data.cursos);
+        } catch (e) {
+            console.log(e.message);
+        }
+    };
 
     const gestorCurso = (e) => {
 
@@ -66,7 +92,7 @@ const FormuCursos = () => {
         setPrecio(e.target.value);
     };
 
-    useEffect(() => { extraerDatosDeUsuario() }, []);
+    useEffect(() => { getCursos() }, []);
     return (
         <div>
 
@@ -88,13 +114,26 @@ const FormuCursos = () => {
                 <div>
                     <label htmlFor="opcion">Opcion: </label>
                     <div className="col-sm-10">
-                        <input type="text" placeholder="Opcion" id="opcion" value={opcion} onChange={gestorOpcion} /><br />
+                        <select name="opcion" id="opcion" onChange={gestorOpcion} >
+                            <option value=''>Seleccione una opcion</option>
+                            <option value='Presencial'>Presencial</option>
+                            <option value='Online'>Online</option>
+                            <option value='Semi-presencial'>Semi-presencial</option>
+                        </select ><br />
                     </div>
                 </div>
                 <div>
                     <label htmlFor="aula">Aula: </label>
                     <div className="col-sm-10">
-                        <input type="text" placeholder="Aula" id="aula" value={aula} onChange={gestorAula} /><br />
+                        <select name="aula" id="aula" onChange={gestorAula} >
+                            <option value=''>Seleccione una opcion</option>
+                            <option value='Aula-1'>Aula-1</option>
+                            <option value='Aula-2'>Aula-2</option>
+                            <option value='Aula-3'>Aula-3</option>
+                            <option value='Aula-4'>Aula-4</option>
+                            <option value='Aula-5'>Aula-5</option>
+                            <option value='Aula-Virtual'>Aula-Virtual</option>
+                        </select ><br />
                     </div>
                 </div>
                 <div>
@@ -108,11 +147,14 @@ const FormuCursos = () => {
                 </div>
 
             </form>
-            {/* <div className='d-flex flex-wrap justify-content-around mt-3'>
-                {mostrarUser.map((muestra) => {
-                    return (<Usuarios key={muestra.id} muestra={muestra} />)
-                })}
-            </div> */}
+            <div>
+                {cursos.filter((filter) => {
+                    return filter.docente._id === extraerDatosDeUsuario()[1];
+                })
+                    .map((curs) => {
+                        return <ModificarCurso cursos={curs} key={curs._id} />;
+                    })}
+            </div>
         </div>
     )
 }

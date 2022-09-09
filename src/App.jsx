@@ -3,6 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate, NavLink } from 'react-router-dom'
 
+
 import FormuCursos from './components/FormuCursos'
 import FormuLogin from './components/FormuLogin'
 import FormuPost from './components/FormuPost'
@@ -12,9 +13,13 @@ import MostrarCursos from './components/MostrarCursos'
 import Inicio from './components/Inicio'
 import LogOut from './components/LogOut'
 import './Style.css';
+import ModificarCurso from './components/ModificarCurso'
 
 const App = () => {
-    const [tieneAcceso, setTieneAcceso] = useState(false);
+    const datosUsuario = localStorage.getItem("DatosUsuario");
+    const datosRecuperar = datosUsuario ? JSON.parse(datosUsuario) : null;
+    const [tieneAcceso, setTieneAcceso] = useState(datosRecuperar !== null);
+    // const [tieneAcceso, setTieneAcceso] = useState(false);
     const [datos, setDatos] = useState({});
     // const [datosLogout, setDatosLogout] = useState({});
     const [token, setToken] = useState();
@@ -31,7 +36,7 @@ const App = () => {
         <div>
             <Router>
                 <div className='navbar'>
-                    {tieneAcceso === false ? (<div>
+                    {!tieneAcceso ? (<div>
                         <NavLink className={'navlink'} to='/'>Inicio</NavLink>
                         <NavLink className={'navlink'} to='/login'>Iniciar Sesion</NavLink>
                         <NavLink className={'navlink'} to='/registro'>Registrarse</NavLink>
@@ -48,8 +53,8 @@ const App = () => {
                     <Route path='/logout' element={<LogOut gestionarLogOut={gestionarLogOut} />} />
                     <Route path='/usuarios' element={<MostrarUsuarios />} />
                     <Route path='/cursos' element={<MostrarCursos />} />
-                    <Route path='/registro' element={<FormuPost />} />
-                    <Route path='/cursos/crear' element={<FormuCursos />} />
+                    <Route path='/registro' element={<FormuPost gestionarLogin={gestionarLogin} />} />
+                    <Route path='/cursos/crear' element={<FormuCursos gestionarLogin={gestionarLogin} />} />
                     <Route path='/404' element={<Error />} />
                     <Route path='*' element={<Navigate to='/404' replace />} />
                 </Routes>

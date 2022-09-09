@@ -2,11 +2,14 @@ import axios from 'axios'
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 const FormuLogin = (props) => {
-    const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/usuarios/login"
+    const URL = 'http://localhost:5000/api/usuarios/login'
+    // const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/usuarios/login"
     const { gestionarLogin } = props;
+    const navegar = useNavigate();
 
 
     const [tieneAcceso, setTieneAcceso] = useState(false);
@@ -25,11 +28,12 @@ const FormuLogin = (props) => {
                 }).then((response) => {
                     console.log('Login correcto');
                     gestionarLogin(response.data)
-                    console.log(response.data.token);
+                    console.log(response.data.userId);
                     localStorage.setItem('DatosUsuario', JSON.stringify({
                         userId: response.data.userId,
                         token: response.data.token
                     }))
+                    navegar('/usuarios');
                 })
             } catch (error) {
                 console.log(error.message);
