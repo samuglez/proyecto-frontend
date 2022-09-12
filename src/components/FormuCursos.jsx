@@ -91,6 +91,7 @@ const FormuCursos = (props) => {
         setPrecio(e.target.value);
     };
 
+    // useEffect(() => { extraerDatosDeUsuario() }, []);
     useEffect(() => { getCursos() }, []);
     return (
         <div>
