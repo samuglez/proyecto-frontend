@@ -5,8 +5,8 @@ import Cursos from './Cursos'
 
 
 const MostrarCursos = () => {
-    // const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/cursos"
-    const URL = "http://localhost:5000/api/cursos";
+    const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/cursos"
+    // const URL = "http://localhost:5000/api/cursos";
     const [mostrarCurso, setMostrarCurso] = useState([]);
     const mostrar = async () => {
         try {

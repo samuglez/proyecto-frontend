@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 const ModificarCurso = ({ cursos }) => {
-    // const URL = "http://localhost:5000/api/cursos";
+    const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/cursos";
 
     const extraerDatosDeUsuario = () => {
         const datosRecuperar = JSON.parse(localStorage.getItem("DatosUsuario"));
@@ -20,7 +20,7 @@ const ModificarCurso = ({ cursos }) => {
     const modificar = async () => {
         await axios
             .patch(
-                process.env.REACT_APP_BACKEND_URL + '/cursos/' + cursos._id,
+                URL + cursos._id,
                 {
                     curso: curso,
                     docente: extraerDatosDeUsuario()[1],
@@ -57,7 +57,7 @@ const ModificarCurso = ({ cursos }) => {
     };
     const borrar = async () => {
         await axios
-            .delete(process.env.REACT_APP_BACKEND_URL + '/cursos/' + cursos._id, {
+            .delete(URL + cursos._id, {
                 headers: {
                     Authorization: "Bearer " + extraerDatosDeUsuario()[0],
                 },

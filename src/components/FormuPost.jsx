@@ -5,8 +5,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const FormuPost = (props) => {
-    const URL = 'http://localhost:5000/api/usuarios'
-    // const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/usuarios"
+    // const URL = 'http://localhost:5000/api/usuarios'
+    const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/usuarios"
     const { gestionarLogin } = props;
     const navegar = useNavigate();
     const [nombre, setNombre] = useState('')

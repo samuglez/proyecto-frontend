@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 const FormuLogin = (props) => {
     // const URL = 'http://localhost:5000/api/usuarios/login'
-    // const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/usuarios/login"
+    const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/usuarios/login"
     const { gestionarLogin } = props;
     const navegar = useNavigate();
 
@@ -22,12 +22,13 @@ const FormuLogin = (props) => {
         e.preventDefault()
         if (!tieneAcceso) {
             try {
-                await axios.post(process.env.REACT_APP_BACKEND_URL + '/usuarios/login', {
+                await axios.post(URL, {
                     email: Email,
                     password: Password
                 }).then((response) => {
                     console.log('Login correcto');
                     gestionarLogin(response.data)
+                    console.log(response.data);
                     console.log(response.data.userId);
                     localStorage.setItem('DatosUsuario', JSON.stringify({
                         userId: response.data.userId,

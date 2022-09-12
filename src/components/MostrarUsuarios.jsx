@@ -5,7 +5,7 @@ import Usuarios from './Usuarios'
 // import Buscar from './Buscar'
 
 const MostrarUsuarios = () => {
-    const URL = "http://localhost:5000/api/usuarios"
+    const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/usuarios"
     const [mostrarUser, setMostrarUser] = useState([]);
     const mostrar = async () => {
         try {
