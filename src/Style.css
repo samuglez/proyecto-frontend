@@ -40,11 +40,11 @@
   /* display: inline-block; */
 }
 
-.buscar {
+/* .buscar {
 }
 
 .tabla {
-}
+} */
 
 form {
   width: 300px;
@@ -93,6 +93,8 @@ form input[type="button"]:hover {
 .modificar {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+  margin: auto;
 }
 
 .container {

@@ -23,7 +23,6 @@ const FormuCursos = (props) => {
         if (datosRecuperar && datosRecuperar.token) {
             return [datosRecuperar.token, datosRecuperar.userId];
         }
-
     };
     console.log(extraerDatosDeUsuario());
     // extraerDatosDeUsuario();
@@ -143,7 +142,7 @@ const FormuCursos = (props) => {
                     </div>
                 </div>
                 <div>
-                    <input type="button" id="submit" value="Registrarse" onClick={postCurso} />
+                    <input type="button" id="submit" value="Crear" onClick={postCurso} />
                 </div>
 
             </form>

@@ -13,7 +13,7 @@ import MostrarCursos from './components/MostrarCursos'
 import Inicio from './components/Inicio'
 import LogOut from './components/LogOut'
 import './Style.css';
-import ModificarCurso from './components/ModificarCurso'
+// import ModificarCurso from './components/ModificarCurso'
 
 const App = () => {
     const datosUsuario = localStorage.getItem("DatosUsuario");

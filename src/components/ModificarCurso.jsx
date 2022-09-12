@@ -12,7 +12,7 @@ const ModificarCurso = ({ cursos }) => {
         }
     };
     const [curso, setCurso] = useState(cursos.curso);
-    const [docente, setDocente] = useState(cursos.docente);
+    // const [docente, setDocente] = useState(cursos.docente);
     const [opcion, setOpcion] = useState(cursos.opcion);
     const [aula, setAula] = useState(cursos.aula);
     const [precio, setPrecio] = useState(cursos.precio);
