@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import ModificarCurso from './ModificarCurso'
 
 const FormuCursos = (props) => {
-    const URL = 'http://localhost:5000/api/cursos'
+    // const URL = 'http://localhost:5000/api/cursos'
     // const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/cursos"
     const { gestionarLogin } = props;
     const navegar = useNavigate();
@@ -30,7 +30,7 @@ const FormuCursos = (props) => {
         e.preventDefault();
         if (!tieneAcceso) {
             try {
-                await axios.post(URL, {
+                await axios.post(process.env.REACT_APP_BACKEND_URL + '/cursos', {
                     curso: curso,
                     docente: extraerDatosDeUsuario()[1],
                     opcion: opcion,
@@ -62,7 +62,7 @@ const FormuCursos = (props) => {
 
     const getCursos = async () => {
         try {
-            const response = await axios.get(URL, {
+            const response = await axios.get(process.env.REACT_APP_BACKEND_URL + '/cursos', {
                 headers: {
                     Authorization: "Bearer " + extraerDatosDeUsuario()[0],
                 },
