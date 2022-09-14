@@ -42,6 +42,7 @@ const FormuCursos = (props) => {
                     console.log(response.data);
                 })
                 navegar('/cursos/crear');
+                window.location.reload(true)
             } catch (error) {
                 console.log(error.message);
             }
