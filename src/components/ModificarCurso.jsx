@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 const ModificarCurso = ({ cursos }) => {
-    const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/cursos";
+    const URL = "https://refreshing-mark-361708.nw.r.appspot.com/api/cursos/";
 
     const extraerDatosDeUsuario = () => {
         const datosRecuperar = JSON.parse(localStorage.getItem("DatosUsuario"));
