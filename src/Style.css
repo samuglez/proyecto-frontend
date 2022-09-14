@@ -35,16 +35,17 @@
   padding: 3px 10px;
   border: 1px solid #f6f6f6;
   border-radius: 3px;
-  background-color: #f6f6f6;
+  /* background-color: #f6f6f6; */
   margin: 8px 0;
   /* display: inline-block; */
 }
 
-/* .buscar {
+.buscar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
-
-.tabla {
-} */
 
 form {
   width: 300px;

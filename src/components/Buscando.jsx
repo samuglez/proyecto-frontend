@@ -2,17 +2,17 @@ import React from "react";
 
 const Buscando = ({ datos }) => {
     return (
-        <div className="tabla">
+        <div className='container'>
             {datos.map((dato) => {
                 return (
-                    <tr key={dato._id}>
-                        <td>{dato.curso}</td>
+                    <div key={dato._id} className='card'>
+                        <h2>{dato.curso}</h2>
                         {dato.docente !== null ? (
-                            <td>{dato.docente.nombre}</td>
+                            <h5>Docente: {dato.docente.nombre}</h5>
                         ) : (
-                            <td>No Asignado</td>
+                            <h5>No Asignado</h5>
                         )}
-                    </tr>
+                    </div>
                 );
             })}
         </div>
